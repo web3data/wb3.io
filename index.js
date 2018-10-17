@@ -10,15 +10,15 @@ const express = require('express'),
 const baseUri = 'https://amberdata.io/'
 const searchUri = 'search?q='
 
-app.use(express.static(root))
+app.use(express.static(root, { redirect : false }))
 app.disable('x-powered-by')
 
 // Redirect all HTTP traffic to HTTPS
-function ensureSecure(req, res, next) {
-  if (req.secure) return next()
-  res.redirect('https://' + req.hostname + req.url)
-}
-if (process.env.NODE_ENV === 'production') app.all('*', ensureSecure)
+// function ensureSecure(req, res, next) {
+//   if (req.secure) return next()
+//   res.redirect('https://' + req.hostname + req.url)
+// }
+// if (process.env.NODE_ENV === 'production') app.all('*', ensureSecure)
 
 function getDataFromSearch(str) {
   return new Promise((resolve, reject) => {
