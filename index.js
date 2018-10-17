@@ -10,7 +10,7 @@ const express = require('express'),
 const baseUri = 'https://amberdata.io/'
 const searchUri = 'search?q='
 
-app.use(express.static(root, { redirect : false }))
+app.use(express.static(root, { redirect: false }))
 app.disable('x-powered-by')
 
 // Redirect all HTTP traffic to HTTPS
@@ -40,10 +40,10 @@ function getDataFromSearch(str) {
         // if (error) reject(error)
         if (error) resolve(null)
         const data = body && body.length > 0 ? body[0] : null
-        const match = data && data.match && data.match.address ? data.match.address : null
+        const match =
+          data && data.match && data.match.address ? data.match.address : null
         resolve(match)
       })
-
     } catch (e) {
       reject(e)
     }
