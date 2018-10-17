@@ -1,0 +1,29 @@
+$white:             #ffffff !default;
+$black:             #222222 !default; // I hate exact black. Eeww
+
+$primary:           #0F2319 !default;
+$error:             #C94736 !default;
+$secondary:         #269883 !default;
+
+$darkgrey:          #323232 !default;
+$lightgrey:         #a7a7a7 !default;
+
+// Branding
+$color1: #269883;
+$color2: #0B5085;
+$color3: #A5FEF4;
+$color4: #5DCCDD;
+$color5: #0F2319;
+
+// Styleguide
+$border-radius:     12px !default;
+
+// Responsiveness
+// 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
+$tablet: 769px !default
+// 960px container + 40px
+$desktop: 1000px !default
+// 1152px container + 40px
+$widescreen: 1192px !default
+// 1344px container + 40px
+$fullhd: 1384px !default

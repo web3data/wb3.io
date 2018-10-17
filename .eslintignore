@@ -1,0 +1,7 @@
+.git
+/config
+/dist
+/scripts
+/test
+/static
+/node_modules
