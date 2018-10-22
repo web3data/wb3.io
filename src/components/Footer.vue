@@ -1,5 +1,5 @@
 <template>
-  <div>&copy; wb3.io {{ year }}</div>
+  <div>&copy; wb3.io {{ year }} - <span>data with ♥ by <a href="https://amberdata.io" target="_blank">amberdata.io</a> </span> </div>
 </template>
 
 <script>
@@ -18,8 +18,7 @@ export default {
 @import '../scss/variables';
 
 div {
-  background: darken($color2, 10%);
-  color: $white;
+  color: $black;
   font-size: 11pt;
   padding: 40px 0px 30px;
   text-align: center;

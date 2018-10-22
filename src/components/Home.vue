@@ -1,19 +1,40 @@
 <template>
-  <div class="home">
+  <div>
 
-    <section class="intro">
+    <div class="home">
+      <SmartInput />
+    </div>
+    <PaintBackground />
+
+    <div id="paintEffect" />
+
+    <!-- <section class="intro">
       <div class="card">
-        <h1>wb3.io</h1>
+        <h1>wb3.io <small>FAQ's</small> </h1>
         <h3>View Blockchain faster!</h3>
       </div>
-    </section>
+    </section> -->
 
   </div>
 </template>
 
 <script>
+import PaintBackground from './PaintBackground'
+import SmartInput from './SmartInput'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+
+  data: function() {
+    return {
+      goo: null
+    }
+  },
+
+  components: {
+    PaintBackground,
+    SmartInput
+  }
 }
 </script>
 
@@ -21,7 +42,9 @@ export default {
 @import '../scss/variables.scss';
 
 .home {
-  margin: auto;
+  background: $white;
+  display: flex;
+  margin: 0 0 auto;
 }
 
 .card {
