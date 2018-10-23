@@ -4,21 +4,29 @@
     <div class="home">
       <SmartInput />
     </div>
-    <PaintBackground />
 
-    <div id="paintEffect" />
-
-    <!-- <section class="intro">
-      <div class="card">
-        <h1>wb3.io <small>FAQ's</small> </h1>
-        <h3>View Blockchain faster!</h3>
+    <div class="main-content">
+      <PaintBackground />
+      <div class="subtitle-copy">
+        <h5>View blockchain faster!</h5>
+        <h6>Start typing to search</h6>
       </div>
-    </section> -->
+
+      <!-- <section class="intro">
+        <div class="card">
+          <h1>wb3.io <small>FAQ's</small> </h1>
+          <h3>View Blockchain faster!</h3>
+        </div>
+      </section> -->
+
+      <Footer />
+    </div>
 
   </div>
 </template>
 
 <script>
+import Footer from './Footer.vue'
 import PaintBackground from './PaintBackground'
 import SmartInput from './SmartInput'
 
@@ -32,6 +40,7 @@ export default {
   },
 
   components: {
+    Footer,
     PaintBackground,
     SmartInput
   }
@@ -45,6 +54,25 @@ export default {
   background: $white;
   display: flex;
   margin: 0 0 auto;
+}
+
+.main-content {
+  position: relative;
+  min-height: calc(70vh - 62px);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.subtitle-copy {
+  display: flex;
+  padding: 0 $gutter;
+  width: 60vw;
+  margin: 0 auto;
+
+  h5 {
+    color: $grey03;
+  }
 }
 
 .card {

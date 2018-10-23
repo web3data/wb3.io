@@ -16,10 +16,10 @@
 
 <template>
   <div class="typeahead-list-item">
-    <div class="item-icon-wrap">
+    <!-- <div class="item-icon-wrap">
       <icon v-if="data && data.type != 'token'" :name="getIcon(data.type)" />
-      <!-- <Blockie v-if="data && data.type == 'token'" :hex="data.match.address" /> -->
-    </div>
+      <Blockie v-if="data && data.type == 'token'" :hex="data.match.address" />
+    </div> -->
 
     <div class="ta-item-wrap">
       <div class="ta-title-container">
@@ -169,6 +169,7 @@ export default {
 
   &.typeahead-list-all
     h2
+      color: $black
       display: block
       width: 100%
       font-style: italic
@@ -178,8 +179,8 @@ export default {
   .ta-item-wrap
     display: flex
     flex-direction: column
-    padding: 5px 0
-    max-width: 80%
+    padding: 10px 20px
+    // max-width: 80%
 
   .item-subdetails
     line-height: 8pt
@@ -199,38 +200,41 @@ export default {
     display: flex
     min-width: 0
     max-width: 500px
+
     h2
+      color: $black
       font-size: 16pt
       line-height: 17pt
       padding: 1px 0 4px
+      margin: 0
       overflow: hidden
       text-overflow: ellipsis
       white-space: nowrap
 
   span
     color: $grey05
-    font-size: 8pt
+    font-size: 9pt
     margin: auto 3px
 
     b
       color: $grey02
 
-  .item-icon-wrap
-    display: flex
-    margin: auto 5px
-    width: 40px
-    height: 40px
-    border-radius: 5px
-    overflow: hidden
-
-    .blockie img
-      width: 40px
-      height: 40px
-
-    .fa-icon
-      height: 25px
-      margin: auto
-      width: 25px
+  // .item-icon-wrap
+  //   display: flex
+  //   margin: auto 5px
+  //   width: 40px
+  //   height: 40px
+  //   border-radius: 5px
+  //   overflow: hidden
+  //
+  //   .blockie img
+  //     width: 40px
+  //     height: 40px
+  //
+  //   .fa-icon
+  //     height: 25px
+  //     margin: auto
+  //     width: 25px
 
   &.focus-list
     color: white

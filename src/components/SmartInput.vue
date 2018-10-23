@@ -14,8 +14,10 @@
       />
     </div>
 
-    <div class="copypasta">
-      <!-- todo -->
+    <div class="gothere">
+      <div :class="{'go-action': true, active: tmpTerm}">
+        <img class="btn-img" src="/static/arrow.svg" alt="">
+      </div>
     </div>
   </div>
 </template>
@@ -24,10 +26,9 @@
 import { mapActions, mapGetters } from 'vuex'
 import TypeAhead from './TypeAhead'
 
-const hints = {
-  0: 'Search for Tokens, Contracts, Addresses, Transactions, Blocks...',
-  1: 'Hit Enter to select item, use Arrow Keys to navigate search items'
-}
+const hint = 'Search the blockchain...'
+// const hint = 'Search for Tokens, Contracts, Addresses, Transactions, Blocks...'
+// 1: 'Hit Enter to select item, use Arrow Keys to navigate search items'
 
 const rotatingExamples = [
   'CryptoKitties',
@@ -48,24 +49,19 @@ export default {
 
   data() {
     return {
+      initial: false,
       searchQuery: '',
-      timer: null,
       queryTerm: '',
       placeholder: rotatingExamples[0],
+      placeholderHint: hint,
       previousQuery: '',
       previousTypes: [],
-      activeHint: hints[0]
+      activeHint: hint
     }
   },
 
   computed: {
-    ...mapGetters([
-      'bookmarks',
-      'categories',
-      'query',
-      'refineActive',
-      'results'
-    ]),
+    ...mapGetters(['bookmarks', 'categories', 'tmpTerm', 'query', 'results']),
     ...mapGetters('user', ['isAuthenticated']),
     bookmarked() {
       if (!this.bookmarks || this.bookmarks.length <= 0) return false
@@ -88,30 +84,66 @@ export default {
       'resetSearch',
       'setSearchQuery',
       'toggleActive',
-      'toggleRefine',
       'updateKeyValue'
     ]),
     close() {
       this.toggleActive()
-      this.$analytics.event('Search - Query Close')
+      // this.$analytics.event('Search - Query Close')
     },
-    toggleRefinements() {
-      this.toggleRefine()
-      this.$analytics.event('Search - Toggle Refine', {
-        active: this.refineActive
-      })
+    goToPage(path) {
+      // Go to page!
+      const url = `https://amberdata.io/${path}`
+      window.open(url, '_blank')
+    },
+    goToSearch(data) {
+      if (!data || !data.data || !data.data.type) {
+        this.goToPage(`search?q=${data.term}`)
+        return
+      }
+      const match = data.data.match
+      let path = ''
+
+      switch (data.data.type) {
+        case 'block':
+          path = `blocks/${match.number || match.hash}`
+          break
+        case 'token':
+          path = `addresses/${match.address}`
+          break
+        case 'contract':
+          path = `addresses/${match.address || match.hash}`
+          break
+        case 'address':
+          path = `addresses/${match.hash || match.address}`
+          break
+        case 'transaction':
+          path = `transactions/${match.hash}`
+          break
+        case 'log':
+          if (match.transactionHash)
+            path = `transactions/${match.transactionHash}`
+          else if (match.blockNumber) path = `blocks/${match.blockNumber}`
+          break
+        case 'uncle':
+          path = `uncles/${match.hash}`
+          break
+      }
+
+      this.goToPage(path)
     },
     handleSelect(data) {
       this.setSearchQuery({ term: data.term })
-      this.sendRequest()
+      // this.sendRequest()
       this.updateKeyValue({ key: 'tmpTerm', value: data.term })
+      this.goToSearch(data)
     },
     handleInput(term) {
+      if (!this.initial) this.initial = true
       if (!term || term.length < 1) {
         this.resetSearch()
         this.updateKeyValue({ key: 'tmpTerm', value: null })
       }
-      this.activeHint = term && term.length > 0 ? hints[1] : hints[0]
+      this.activeHint = hint
       this.updateKeyValue({ key: 'tmpTerm', value: term })
     },
     request() {
@@ -120,25 +152,11 @@ export default {
       if (this.query.term === 'undefined' || this.query.term === undefined)
         return
 
-      this.$event.$emit('LOADING:SHOW', { title: 'Searching...' })
       this.postQuery()
-        .then(() => {
-          this.$event.$emit('LOADING:HIDE')
-        })
-        .catch(() => {
-          this.$event.$emit('LOADING:HIDE')
-        })
-
-      this.$analytics.event('Search - Query', {
-        term: this.query.term,
-        types: this.query.types
-      })
-
-      // catchall
-      if (this.timer && process.browser) window.clearTimeout(this.timer)
-      this.timer = setTimeout(() => {
-        this.$event.$emit('LOADING:HIDE')
-      }, 30000)
+      // this.$analytics.event('Search - Query', {
+      //   term: this.query.term,
+      //   types: this.query.types
+      // })
     },
     sendRequest() {
       // NOTE: This needs a little more smarts :P
@@ -154,12 +172,6 @@ export default {
       this.request()
     },
     addNewBookmark() {
-      // User must be authed, otherwise this feature is useless
-      if (!this.isAuthenticated) {
-        this.$event.$emit('AUTH:REQUIRES:SESSION', { type: 'login' })
-        return
-      }
-
       // Check that the meat of the query exists, otherwise we can't eat
       if (!this.query || !this.query.term) return
 
@@ -179,7 +191,7 @@ export default {
           : 0
       this.addBookmark(item)
 
-      this.$analytics.event('Search - Add Bookmark', item)
+      // this.$analytics.event('Search - Add Bookmark', item)
     }
   },
 
@@ -193,7 +205,9 @@ export default {
     setInterval(() => {
       ++i
       if (i >= rotatingExamples.length) i = 0
-      this.placeholder = rotatingExamples[i]
+      this.placeholder = !this.initial
+        ? rotatingExamples[i]
+        : this.placeholderHint
     }, 2000)
   },
 
@@ -221,6 +235,7 @@ export default {
   width: 60vw;
   height: 62px;
   margin: 30vh auto 0;
+  position: relative;
 }
 
 .logo {
@@ -232,5 +247,30 @@ export default {
   position: relative;
   display: flex;
   flex: 1;
+}
+
+.gothere {
+  display: flex;
+  position: absolute;
+  right: 0;
+
+  .go-action {
+    cursor: pointer;
+    margin: auto;
+    opacity: 0;
+    transition: all 220ms ease-in-out;
+
+    &.active {
+      opacity: 0.7;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .btn-img {
+    width: 70px;
+  }
 }
 </style>

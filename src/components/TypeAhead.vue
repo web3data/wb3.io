@@ -294,7 +294,7 @@ export default {
   font-size: 38pt
   line-height: 42pt
   outline: 0
-  padding: 0 $gutter
+  padding: 0 80px 0 $gutter
   height: 58px
   width: 100%
 

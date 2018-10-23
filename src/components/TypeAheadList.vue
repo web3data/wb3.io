@@ -82,7 +82,7 @@ export default {
   display: inline-block
   list-style: none
   overflow: scroll
-  max-height: calc(100vh - 200px)
+  max-height: calc(70vh - 62px)
   margin: 0
   padding: 0
   // position: absolute

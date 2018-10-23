@@ -763,19 +763,21 @@ export default {
       }
     },
     fire() {
-      console.log('fire', this.paintable)
       if (!this.paintable) return
-      this.paintable.wave(
-        'hsla(' + Math.floor(Math.random() * 7) * 50 + ',82%,64%,1)',
-        () => {}
-      )
+      if (!this.tmpTerm || this.tmpTerm === '') {
+        this.paintable.wave('hsla(240,0%,98%,1)', () => {})
+      } else {
+        this.paintable.wave(
+          'hsla(' + Math.floor(Math.random() * 7) * 50 + ',82%,64%,1)',
+          () => {}
+        )
+      }
     }
   },
 
   mounted() {
     this.paintTheWall()
     this.paintable = new this.goo('#paintEffect')
-    console.log('this.query', this.query)
   },
 
   watch: {
@@ -787,9 +789,11 @@ export default {
 <style lang="scss" scoped>
 #paintEffect {
   display: flex;
-  height: 70vh;
+  height: 100%;
+  width: 100%;
   margin: 0;
-  position: relative;
+  top: 0;
+  position: absolute;
   z-index: -1;
   pointer-events: none;
   -webkit-touch-callout: none;

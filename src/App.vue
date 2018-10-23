@@ -1,19 +1,12 @@
 <template>
   <div class="app">
     <router-view />
-    <Footer />
   </div>
 </template>
 
 <script>
-import Footer from './components/Footer.vue'
-
 export default {
   name: 'App',
-
-  components: {
-    Footer
-  },
 
   watch: {
     $route(to) {
