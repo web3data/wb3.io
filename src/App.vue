@@ -1,28 +1,18 @@
 <template>
   <div class="app">
-    <Header />
     <router-view />
-    <Footer />
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
-
 export default {
   name: 'App',
-
-  components: {
-    Header,
-    Footer
-  },
 
   watch: {
     $route(to) {
       if (!window.gtag) return
       // update google analytics
-      window.gtag('config', 'UA-TODO', {
+      window.gtag('config', 'UA-127982765-1', {
         page_title: to.name,
         page_path: to.fullPath
       })

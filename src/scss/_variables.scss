@@ -8,6 +8,18 @@ $secondary:         #269883 !default;
 $darkgrey:          #323232 !default;
 $lightgrey:         #a7a7a7 !default;
 
+$grey00:                      $black;
+$grey01:                      #212121 !default;
+$grey02:                      #34353c !default;
+$grey03:                      #4b4b4b !default;
+$grey04:                      #6e6e6e !default;
+$grey05:                      #969696 !default;
+$grey06:                      #a6a6a6 !default;
+$grey07:                      #bababa !default;
+$grey08:                      #efefef !default;
+$grey09:                      #f9f9f9 !default;
+$grey10:                      $white;
+
 // Branding
 $color1: #269883;
 $color2: #0B5085;
@@ -16,6 +28,7 @@ $color4: #5DCCDD;
 $color5: #0F2319;
 
 // Styleguide
+$gutter:            12px !default;
 $border-radius:     12px !default;
 
 // Responsiveness

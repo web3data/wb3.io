@@ -1,27 +1,78 @@
 <template>
-  <div class="home">
+  <div>
 
-    <section class="intro">
-      <div class="card">
-        <h1>wb3.io</h1>
-        <h3>View Blockchain faster!</h3>
+    <div class="home">
+      <SmartInput />
+    </div>
+
+    <div class="main-content">
+      <PaintBackground />
+      <div class="subtitle-copy">
+        <h5>View blockchain faster!</h5>
+        <h6>Start typing to search</h6>
       </div>
-    </section>
+
+      <!-- <section class="intro">
+        <div class="card">
+          <h1>wb3.io <small>FAQ's</small> </h1>
+        </div>
+      </section> -->
+
+      <Footer />
+    </div>
 
   </div>
 </template>
 
 <script>
+import Footer from './Footer.vue'
+import PaintBackground from './PaintBackground'
+import SmartInput from './SmartInput'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+
+  data: function() {
+    return {
+      goo: null
+    }
+  },
+
+  components: {
+    Footer,
+    PaintBackground,
+    SmartInput
+  }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../scss/variables.scss';
 
 .home {
-  margin: auto;
+  background: $white;
+  display: flex;
+  margin: 0 0 auto;
+}
+
+.main-content {
+  position: relative;
+  min-height: calc(70vh - 62px);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.subtitle-copy {
+  display: flex;
+  padding: 0 $gutter;
+  width: 60vw;
+  margin: 0 auto;
+  justify-content: space-between;
+
+  h5 {
+    color: $grey03;
+  }
 }
 
 .card {
@@ -65,38 +116,63 @@ export default {
     display: flex;
     flex-wrap: wrap;
   }
-
-  .grid-cl-1 {
-    order: 1;
-    flex: 1 1 50%;
-  }
-  .grid-cl-2 {
-    order: 3;
-    flex-direction: row;
-  }
-  .grid-cl-3 {
-    order: 2;
-    flex: 1 1 50%;
-  }
 }
 
 // Mobile
 @media screen and (max-width: $tablet - 1px) {
-  .grid {
-    display: flex;
-    flex-wrap: wrap;
+  .main-content {
+    min-height: calc(85vh - 90px);
   }
 
-  .grid-cl-1 {
-    order: 1;
-    flex: 1 1 100%;
+  .subtitle-copy {
+    width: 100%;
+    padding: 0;
+
+    h5 {
+      padding: 0 $gutter;
+    }
+
+    h6 {
+      display: none;
+    }
   }
-  .grid-cl-2 {
-    order: 3;
+
+  .typeahead-input {
+    font-size: 16pt !important;
+    line-height: 19pt !important;
   }
-  .grid-cl-3 {
-    order: 2;
-    flex: 1 1 100%;
+
+  .typeahead-list-item {
+    .fa-icon,
+    span + span + span {
+      display: none;
+    }
+
+    .icon-wrap {
+      width: 0;
+    }
+
+    h2 {
+      font-size: 11pt;
+    }
+
+    span {
+      max-width: 30vw;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .typeahead-list-item span {
+      margin: auto 5px auto 0;
+    }
+
+    .typeahead-label {
+      font-size: 8pt;
+      max-width: initial;
+      overflow: initial;
+      padding: 0 3px;
+    }
   }
 }
 </style>
