@@ -26,7 +26,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import TypeAhead from './TypeAhead'
 
-const hint = 'Search the blockchain...'
+const hint = 'Search...'
 // const hint = 'Search for Tokens, Contracts, Addresses, Transactions, Blocks...'
 // 1: 'Hit Enter to select item, use Arrow Keys to navigate search items'
 
@@ -271,6 +271,38 @@ export default {
 
   .btn-img {
     width: 70px;
+  }
+}
+
+// Tablet
+// @media screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
+//
+// }
+
+// Mobile
+@media screen and (max-width: $tablet - 1px) {
+  .smart-input {
+    flex-direction: column;
+    width: 100%;
+    height: 90px;
+    margin: 15vh auto 0;
+
+    .logo {
+      height: auto;
+      width: 100px;
+      min-width: 100px;
+      margin: 0 auto;
+    }
+  }
+
+  .gothere {
+    bottom: 0;
+    right: 10px;
+    height: 60px;
+
+    .btn-img {
+      width: 50px;
+    }
   }
 }
 </style>

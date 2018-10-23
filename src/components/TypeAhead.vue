@@ -291,8 +291,8 @@ export default {
   background: transparent
   border: 0
   border-bottom: 4px solid $black
-  font-size: 38pt
-  line-height: 42pt
+  font-size: 3.9vw
+  line-height: 4vw
   outline: 0
   padding: 0 80px 0 $gutter
   height: 58px
