@@ -32,7 +32,7 @@ const authInterceptor = function(config) {
     const blockchainId = '1c9c969065fcd1cf'
     const serverUrl =
       isProduction && blockchainId
-        ? `https://${blockchainId}.api.amberdata.io`
+        ? `https://${blockchainId}.api.wb3.io`
         : 'http://localhost:7777'
 
     config.url = serverUrl + config.url

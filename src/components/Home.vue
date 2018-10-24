@@ -73,6 +73,10 @@ export default {
   h5 {
     color: $grey03;
   }
+
+  h6 {
+    color: $grey05;
+  }
 }
 
 .card {
