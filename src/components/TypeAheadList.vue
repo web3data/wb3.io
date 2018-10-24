@@ -74,6 +74,10 @@ export default {
   transition: all 0.3s ease-out
   width: 100%
   z-index: 10
+  ::-webkit-scrollbar
+    width: 4px
+  ::-webkit-scrollbar-thumb
+    background: $black
 
 .typeahead-list ul
   background: $white
