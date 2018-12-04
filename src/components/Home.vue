@@ -12,13 +12,23 @@
         <h6>Start typing to search</h6>
       </div>
 
-      <!-- <section class="intro">
-        <div class="card">
-          <h1>wb3.io <small>FAQ's</small> </h1>
+      <!-- TODO: Rename -->
+      <div class="section">
+        <div class="faqs w-100">
+          <h2>Frequently Asked Questions</h2>
+          <div class=""/>
         </div>
-      </section> -->
+        <div class="searches w-100">
+          <div class="inline">
+            <h2>Your Recent Searches</h2>
+            <button type="button" name="button">clear all</button>
+          </div>
+          <div class=""/>
+        </div>
+      </div>
 
       <Footer />
+
     </div>
 
   </div>
@@ -76,6 +86,50 @@ export default {
 
   h6 {
     color: $grey05;
+  }
+}
+// TODO: Discuss with Trev consolidate .subt... and .sec..
+.section {
+  display: flex;
+  padding: 0 $gutter;
+  width: 60vw;
+  margin: 0 auto;
+  justify-content: space-between;
+  flex-direction: row;
+  h2 {
+    color: $black;
+    font-size: 16pt;
+    line-height: 19px;
+    margin: 0;
+  }
+  .w-100 {
+    width: 100%;
+  }
+  .inline {
+    display: flex;
+    justify-content: space-between;
+  }
+  .searches {
+    button {
+      border-radius: 0;
+      border-style: solid;
+      border-width: 0 0 1px 0;
+      background-color: transparent;
+      border-color: $grey05;
+      color: $grey05;
+      padding: 0;
+      -webkit-appearance: none;
+      width: auto;
+      height: fit-content;
+      align-self: flex-end;
+      cursor: pointer;
+      line-height: 15px;
+      &:hover {
+        border-color: $black;
+        color: $black;
+        border-bottom-width: 2px;
+      }
+    }
   }
 }
 
