@@ -802,7 +802,6 @@ export default {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
   &:after {
     position: absolute;
     content: '';
