@@ -78,7 +78,7 @@ export default {
   position: relative;
   min-height: calc(70vh - 62px);
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   flex-direction: column;
 }
 
