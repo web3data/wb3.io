@@ -23,7 +23,14 @@ export default {
 
 <style lang="scss">
 @import './scss/main.scss';
-
+html {
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $black;
+  }
+}
 body {
   background: #f9f9f9;
   padding: 0;
