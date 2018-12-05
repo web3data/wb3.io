@@ -16,14 +16,19 @@
       <div class="section">
         <div class="faqs w-100">
           <h2>Frequently Asked Questions</h2>
-          <div class=""/>
+          <div v-for="faq in faqs">
+            <CollapseCard :title="faq.question" :content="faq.answer"/>
+          </div>
         </div>
         <div class="searches w-100">
           <div class="inline">
             <h2>Your Recent Searches</h2>
             <button type="button" name="button">clear all</button>
           </div>
-          <div class=""/>
+          <div class="search">
+            <p>ZRX</p>
+            <img src="/static/arrow.svg" alt="">
+          </div>
         </div>
       </div>
 
@@ -38,20 +43,24 @@
 import Footer from './Footer.vue'
 import PaintBackground from './PaintBackground'
 import SmartInput from './SmartInput'
+import CollapseCard from './CollapseCard.vue'
+import faqs from '../../static/faqs.json'
 
 export default {
   name: 'Home',
 
   data: function() {
     return {
-      goo: null
+      goo: null,
+      faqs: faqs
     }
   },
 
   components: {
     Footer,
     PaintBackground,
-    SmartInput
+    SmartInput,
+    CollapseCard
   }
 }
 </script>
@@ -79,7 +88,7 @@ export default {
   width: 60vw;
   margin: 0 auto;
   justify-content: space-between;
-
+  margin-bottom: 125px;
   h5 {
     color: $grey03;
   }
@@ -96,11 +105,13 @@ export default {
   margin: 0 auto;
   justify-content: space-between;
   flex-direction: row;
+  min-height: 200px;
   h2 {
     color: $black;
     font-size: 16pt;
     line-height: 19px;
     margin: 0;
+    padding-bottom: 7px;
   }
   .w-100 {
     width: 100%;
@@ -108,6 +119,9 @@ export default {
   .inline {
     display: flex;
     justify-content: space-between;
+  }
+  .faqs {
+    margin-right: 20px;
   }
   .searches {
     button {
@@ -121,13 +135,33 @@ export default {
       -webkit-appearance: none;
       width: auto;
       height: fit-content;
-      align-self: flex-end;
+      align-self: center;
       cursor: pointer;
       line-height: 15px;
+      transition: all 100ms ease-in-out;
       &:hover {
         border-color: $black;
         color: $black;
-        border-bottom-width: 2px;
+      }
+    }
+    .search {
+      height: 40px;
+      padding: 0 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: $white;
+      border-radius: 3px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 10px -2px transparentize($black, 0.85);
+      font-size: 10pt;
+      margin-top: 10px;
+      &:hover {
+        background-color: #fdffe3;
+      }
+      img {
+        height: 11pt;
       }
     }
   }
