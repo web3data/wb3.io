@@ -1,10 +1,10 @@
 <template>
   <div :class="{'collapse-card': true, open}">
-    <div class="collapse-header" @click.prevent="open = !open">
+    <div class="collapse-header" @click.prevent="collapse()">
       <p>{{ title }}</p>
       <img src="/static/chevron-up.svg" alt="">
     </div>
-    <div class="collapse-content">
+    <div ref="collapseContent" class="collapse-content">
       <p v-html="content"/>
     </div>
   </div>
@@ -19,7 +19,19 @@ export default {
   },
   props: ['title', 'content'],
   computed: {},
-  methods: {}
+  methods: {
+    collapse() {
+      let el = this.$refs.collapseContent
+      if (!this.open) {
+        this.open = true
+        let maxHeight = el.firstElementChild.offsetHeight
+        el.setAttribute('style', `max-height: ${maxHeight + 1}px`)
+      } else {
+        this.open = false
+        el.removeAttribute('style')
+      }
+    }
+  }
 }
 </script>
 <style lang="sass" scoped>
@@ -35,7 +47,6 @@ export default {
   &.open
     > .collapse-content
       max-height: 10000px
-      padding-bottom: 15px
     > .collapse-header
         img
           transform: none
@@ -53,9 +64,9 @@ export default {
   .collapse-content
     max-height: 0
     overflow: hidden
-    transition: max-height 260ms ease-in-out
-    padding: 0 15px 0 15px
+    transition: max-height 320ms ease
     p
       border-top: 1px solid #E5E5E5
-      padding-top: 15px
+      padding: 15px 0
+      margin: 0 15px
 </style>

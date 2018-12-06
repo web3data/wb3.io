@@ -229,6 +229,12 @@ export default {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .section {
+    width: 90vw;
+  }
+}
+
 // Mobile
 @media screen and (max-width: $tablet - 1px) {
   .main-content {
@@ -238,6 +244,7 @@ export default {
   .subtitle-copy {
     width: 100%;
     padding: 0;
+    margin-bottom: 40px;
 
     h5 {
       padding: 0 $gutter;
@@ -245,6 +252,14 @@ export default {
 
     h6 {
       display: none;
+    }
+  }
+
+  .section {
+    flex-direction: column;
+
+    .faqs {
+      margin-bottom: 40px;
     }
   }
 
