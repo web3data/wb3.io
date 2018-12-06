@@ -84,7 +84,8 @@ export default {
       'resetSearch',
       'setSearchQuery',
       'toggleActive',
-      'updateKeyValue'
+      'updateKeyValue',
+      'addSearch'
     ]),
     close() {
       this.toggleActive()
@@ -93,6 +94,7 @@ export default {
     goToPage(path) {
       // Go to page!
       const url = `https://amberdata.io/${path}`
+      this.addSearch(url)
       window.open(url, '_blank')
     },
     goToSearch(data) {
@@ -128,7 +130,6 @@ export default {
           path = `uncles/${match.hash}`
           break
       }
-
       this.goToPage(path)
     },
     handleSelect(data) {
@@ -190,8 +191,16 @@ export default {
           ? this.results.totalRecords
           : 0
       this.addBookmark(item)
-
       // this.$analytics.event('Search - Add Bookmark', item)
+    },
+    addRecentSearch() {
+      let searches = window.localStorage.getItem('searches')
+
+      // If null set it to default value of empty array
+      searches = searches ? searches : '[]'
+      searches = JSON.parse(searches)
+      searches.push(this.query.term)
+      window.localStorage.setItem('searches', JSON.stringify(searches))
     }
   },
 

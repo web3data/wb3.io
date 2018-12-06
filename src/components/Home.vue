@@ -23,11 +23,14 @@
         <div class="searches w-100">
           <div class="inline">
             <h2>Your Recent Searches</h2>
-            <button type="button" name="button">clear all</button>
+            <button @click="clearSearches" type="button" name="button">clear all</button>
           </div>
-          <div class="search">
-            <p>ZRX</p>
-            <img src="/static/arrow.svg" alt="">
+
+          <div v-for="search in searches">
+            <div class="search" @click="openLink(search.url)">
+              <p>{{ search.term }}</p>
+              <img src="/static/arrow.svg" alt="">
+            </div>
           </div>
         </div>
       </div>
@@ -45,6 +48,7 @@ import PaintBackground from './PaintBackground'
 import SmartInput from './SmartInput'
 import CollapseCard from './CollapseCard.vue'
 import faqs from '../../static/faqs.json'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
@@ -61,6 +65,21 @@ export default {
     PaintBackground,
     SmartInput,
     CollapseCard
+  },
+
+  computed: {
+    ...mapGetters(['searches'])
+  },
+
+  methods: {
+    ...mapActions(['loadStorage', 'clearSearches']),
+    openLink(url) {
+      window.open(url, '_blank')
+    }
+  },
+
+  created() {
+    this.loadStorage()
   }
 }
 </script>

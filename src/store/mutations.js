@@ -69,5 +69,19 @@ export default {
       }
       return item[term]
     })
+  },
+
+  ADD_SEARCH(state, { term, url }) {
+    console.log('url', url)
+    state.searches.push({ term: term, url: url })
+
+    // if (!state.searches.includes(search)) {
+    //   state.searches.push({ term: state.query.term, url: url })
+    //   window.localStorage.setItem('searches', JSON.stringify(state.searches))
+    // }
+  },
+
+  SET_SEARCH(state, searches) {
+    state.searches = searches
   }
 }

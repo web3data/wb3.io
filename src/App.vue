@@ -30,6 +30,7 @@ html {
   ::-webkit-scrollbar-thumb {
     background: $black;
   }
+  overflow-y: scroll;
 }
 body {
   background: #f9f9f9;

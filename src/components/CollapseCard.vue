@@ -5,7 +5,7 @@
       <img src="/static/chevron-up.svg" alt="">
     </div>
     <div class="collapse-content">
-      <p>{{ content }}</p>
+      <p v-html="content"/>
     </div>
   </div>
 </template>

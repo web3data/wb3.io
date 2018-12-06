@@ -1,7 +1,7 @@
 [
   {
     "question": "Is wb3.io able to link to a custom blockchain?",
-    "answer": "Yep! If you setup a public blockchain within amberdata.io, the data will get indexed. Once indexed, all public blockchain data will be able to directly link via wb3.io. The linking process takes into account the recent usage and popularity to accurately direct behaviour."
+    "answer": "Yep! If you setup a public blockchain within <a target='_blank' href='https://amberdata.io'>amberdata.io</a>, the data will get indexed. Once indexed, all public blockchain data will be able to directly link via wb3.io. The linking process takes into account the recent usage and popularity to accurately direct behaviour."
   },
   {
     "question": "Lorem ipsum dolor amet pug offal leggings?",

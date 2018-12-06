@@ -1,6 +1,7 @@
 import axios from 'axios'
 // import { apiPrefs } from '../../utils/helpers'
 import filters from '../utils/filters'
+import { setStorage, getStorage } from '../utils/storage'
 
 const defaultCat = {
   active: true,
@@ -208,5 +209,25 @@ export default {
     //   method: 'GET',
     //   key: 'search.bookmarks'
     // }).then(response => commit('SET_BOOKMARKS', response.data))
+  },
+
+  addSearch({ commit, state, dispatch }, url) {
+    let search = { term: state.query.term, url: url }
+    commit('ADD_SEARCH', search)
+    dispatch('setSearch', state.searches)
+  },
+
+  setSearch({ commit }, search) {
+    setStorage('searches', search)
+    commit('SET_SEARCH', search)
+  },
+
+  clearSearches({ dispatch }) {
+    dispatch('setSearch', [])
+  },
+
+  loadStorage({ commit }) {
+    let searches = getStorage('searches')
+    commit('SET_SEARCH', searches ? searches : [])
   }
 }
