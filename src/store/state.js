@@ -6,5 +6,6 @@ export default {
   tmpTerm: '',
   results: {},
   refineActive: false,
-  trending: []
+  trending: [],
+  searches: []
 }

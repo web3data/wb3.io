@@ -6,5 +6,6 @@ export default {
   tmpTerm: state => state.tmpTerm,
   results: state => state.results,
   refineActive: state => state.refineActive,
-  trending: state => state.trending
+  trending: state => state.trending,
+  searches: state => state.searches
 }

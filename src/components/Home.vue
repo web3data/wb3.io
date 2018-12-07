@@ -12,13 +12,31 @@
         <h6>Start typing to search</h6>
       </div>
 
-      <!-- <section class="intro">
-        <div class="card">
-          <h1>wb3.io <small>FAQ's</small> </h1>
+      <!-- TODO: Rename -->
+      <div class="section">
+        <div class="faqs w-100">
+          <h2>Frequently Asked Questions</h2>
+          <div v-for="faq in faqs">
+            <CollapseCard :title="faq.question" :content="faq.answer"/>
+          </div>
         </div>
-      </section> -->
+        <div class="searches w-100">
+          <div class="inline">
+            <h2>Your Recent Searches</h2>
+            <button @click="clearSearches" type="button" name="button">clear all</button>
+          </div>
+
+          <div v-for="search in searches">
+            <div class="search" @click="openLink(search.url)">
+              <p>{{ search.term }}</p>
+              <img src="/static/arrow.svg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
 
       <Footer />
+
     </div>
 
   </div>
@@ -28,20 +46,40 @@
 import Footer from './Footer.vue'
 import PaintBackground from './PaintBackground'
 import SmartInput from './SmartInput'
+import CollapseCard from './CollapseCard.vue'
+import faqs from '../../static/faqs.json'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
 
   data: function() {
     return {
-      goo: null
+      goo: null,
+      faqs: faqs
     }
   },
 
   components: {
     Footer,
     PaintBackground,
-    SmartInput
+    SmartInput,
+    CollapseCard
+  },
+
+  computed: {
+    ...mapGetters(['searches'])
+  },
+
+  methods: {
+    ...mapActions(['loadStorage', 'clearSearches']),
+    openLink(url) {
+      window.open(url, '_blank')
+    }
+  },
+
+  created() {
+    this.loadStorage()
   }
 }
 </script>
@@ -59,7 +97,7 @@ export default {
   position: relative;
   min-height: calc(70vh - 62px);
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   flex-direction: column;
 }
 
@@ -69,13 +107,82 @@ export default {
   width: 60vw;
   margin: 0 auto;
   justify-content: space-between;
-
+  margin-bottom: 125px;
   h5 {
     color: $grey03;
   }
 
   h6 {
     color: $grey05;
+  }
+}
+// TODO: Discuss with Trev consolidate .subt... and .sec..
+.section {
+  display: flex;
+  padding: 0 $gutter;
+  width: 60vw;
+  margin: 0 auto;
+  justify-content: space-between;
+  flex-direction: row;
+  min-height: 200px;
+  h2 {
+    color: $black;
+    font-size: 16pt;
+    line-height: 19px;
+    margin: 0;
+    padding-bottom: 7px;
+  }
+  .w-100 {
+    width: 100%;
+  }
+  .inline {
+    display: flex;
+    justify-content: space-between;
+  }
+  .faqs {
+    margin-right: 20px;
+  }
+  .searches {
+    button {
+      border-radius: 0;
+      border-style: solid;
+      border-width: 0 0 1px 0;
+      background-color: transparent;
+      border-color: $grey05;
+      color: $grey05;
+      padding: 0;
+      -webkit-appearance: none;
+      width: auto;
+      height: fit-content;
+      align-self: center;
+      cursor: pointer;
+      line-height: 15px;
+      transition: all 100ms ease-in-out;
+      &:hover {
+        border-color: $black;
+        color: $black;
+      }
+    }
+    .search {
+      height: 40px;
+      padding: 0 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: $white;
+      border-radius: 3px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 10px -2px transparentize($black, 0.85);
+      font-size: 10pt;
+      margin-top: 10px;
+      &:hover {
+        background-color: #fdffe3;
+      }
+      img {
+        height: 11pt;
+      }
+    }
   }
 }
 
@@ -122,6 +229,12 @@ export default {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .section {
+    width: 90vw;
+  }
+}
+
 // Mobile
 @media screen and (max-width: $tablet - 1px) {
   .main-content {
@@ -131,6 +244,7 @@ export default {
   .subtitle-copy {
     width: 100%;
     padding: 0;
+    margin-bottom: 40px;
 
     h5 {
       padding: 0 $gutter;
@@ -138,6 +252,14 @@ export default {
 
     h6 {
       display: none;
+    }
+  }
+
+  .section {
+    flex-direction: column;
+
+    .faqs {
+      margin-bottom: 40px;
     }
   }
 
