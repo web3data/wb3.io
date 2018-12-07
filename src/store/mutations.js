@@ -72,8 +72,7 @@ export default {
   },
 
   ADD_SEARCH(state, { term, url }) {
-    console.log('url', url)
-    state.searches.push({ term: term, url: url })
+    state.searches.unshift({ term: term, url: url })
 
     // if (!state.searches.includes(search)) {
     //   state.searches.push({ term: state.query.term, url: url })

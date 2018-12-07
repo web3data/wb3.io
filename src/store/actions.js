@@ -213,13 +213,18 @@ export default {
 
   addSearch({ commit, state, dispatch }, url) {
     let search = { term: state.query.term, url: url }
-    commit('ADD_SEARCH', search)
-    dispatch('setSearch', state.searches)
+
+    // Don't allow duplicates
+    if (!state.searches.find(obj => obj.term === search.term)) {
+      commit('ADD_SEARCH', search)
+      dispatch('setSearch', state.searches)
+    }
   },
 
   setSearch({ commit }, search) {
-    setStorage('searches', search)
-    commit('SET_SEARCH', search)
+    //Slice because we want the list no greater than 10
+    setStorage('searches', search.slice(0, 10))
+    commit('SET_SEARCH', search.slice(0, 10))
   },
 
   clearSearches({ dispatch }) {
