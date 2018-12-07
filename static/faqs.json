@@ -1,22 +1,22 @@
 [
   {
+    "question": "How do I use wb3.io?",
+    "answer": "Start searching above for anything blockchain related! There are a few examples flashing by which are great to try first.<br><br>Currently wb3.io supports Addresses, Blocks, NFTs, Tokens Transactions, Uncles & more!<br><br>Once the results show, simply click on the one you wish to use. You will now be redirected to the appropriate page."
+  },
+  {
+    "question": "How does wb3.io link data?",
+    "answer": "Under the hood wb3.io is using the powerful <a target='_blank' href='https://amberdata.io'>amberdata.io</a> API. The data source comes directly from several blockchains, allowing for intelligent results based on the search query."
+  },
+  {
     "question": "Is wb3.io able to link to a custom blockchain?",
     "answer": "Yep! If you setup a public blockchain within <a target='_blank' href='https://amberdata.io'>amberdata.io</a>, the data will get indexed. Once indexed, all public blockchain data will be able to directly link via wb3.io. The linking process takes into account the recent usage and popularity to accurately direct behaviour."
   },
   {
-    "question": "Lorem ipsum dolor amet pug offal leggings?",
-    "answer": "elfies bushwick copper mug lomo skateboard raw denim scenester raclette. Ethical swag hammock gentrify 3 wolf moon. Disrupt 8-bit meditation, fashion axe bitters pitchfork fam aesthetic fingerstache normcore direct trade kitsch godard."
+    "question": "Is wb3.io free to use forever?",
+    "answer": "Yep! wb3.io is a public free to use tool, with no intention of ever requiring payment."
   },
   {
-    "question": "Lorem ipsum dolor amet pug offal leggings?",
-    "answer": "elfies bushwick copper mug lomo skateboard raw denim scenester raclette. Ethical swag hammock gentrify 3 wolf moon. Disrupt 8-bit meditation, fashion axe bitters pitchfork fam aesthetic fingerstache normcore direct trade kitsch godard."
-  },
-  {
-    "question": "Lorem ipsum dolor amet pug offal leggings?",
-    "answer": "elfies bushwick copper mug lomo skateboard raw denim scenester raclette. Ethical swag hammock gentrify 3 wolf moon. Disrupt 8-bit meditation, fashion axe bitters pitchfork fam aesthetic fingerstache normcore direct trade kitsch godard."
-  },
-  {
-    "question": "Lorem ipsum dolor amet pug offal leggings?",
-    "answer": "elfies bushwick copper mug lomo skateboard raw denim scenester raclette. Ethical swag hammock gentrify 3 wolf moon. Disrupt 8-bit meditation, fashion axe bitters pitchfork fam aesthetic fingerstache normcore direct trade kitsch godard."
+    "question": "I have a question or comment, how can I contact you?",
+    "answer": "Please send us an email -- <a href='mailto:hello@amberdata.io'>Contact</a>"
   }
 ]
